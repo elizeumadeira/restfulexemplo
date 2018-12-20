@@ -18,7 +18,7 @@ Route::group(['prefix' => 'v1.0'], function(){
 
     Route::resource('users', 'UsersController');
 });
-
+ 
 Route::get('/', function () {
     return redirect('v1.0');
 });
