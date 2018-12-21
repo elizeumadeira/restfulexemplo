@@ -16,28 +16,18 @@ Route::group(['prefix' => 'v1.0'], function(){
     Route::get('/', function(){
         return response()->json(['message' => 'API Laravel', 'status' => 'Connected!!']);
     });
-    // Route::post('login', 'UsersController@authenticate');
-    // Route::get('open', 'DataController@open');
     
     Route::group(['middleware' => ['jwt.verify']], function () {
-        // Route::get('user', 'UsersController@getAuthenticatedUser');
-        // Route::get('closed', 'DataController@closed');
-        Route::post('closed', 'AuthController@closed');
-        Route::post('me', 'AuthController@me');
+        Route::post('refresh', 'AuthController@refresh');
+        Route::get('me', 'AuthController@me');
+        Route::get('open', 'AuthController@open');
     });
     Route::resource('users', 'UsersController');
 
-    // Route::post('register', 'UsersController@register');
-
     Route::post('login', 'AuthController@login')->name('login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-
+    Route::get('logout', 'AuthController@logout');
 });
 
-
-
- 
 Route::get('/', function () {
     return redirect('v1.0');
 });
