@@ -11,9 +11,8 @@
 |
 */
 
-
-Route::group(['prefix' => 'v1.0'], function(){
-    Route::get('/', function(){
+Route::group(['prefix' => 'v1.0'], function () {
+    Route::get('/', function () {
         return response()->json(['message' => 'API Laravel', 'status' => 'Connected!!']);
     });
     
@@ -21,8 +20,9 @@ Route::group(['prefix' => 'v1.0'], function(){
         Route::post('refresh', 'AuthController@refresh');
         Route::get('me', 'AuthController@me');
         Route::get('open', 'AuthController@open');
+        
+        Route::resource('users', 'UsersController');
     });
-    Route::resource('users', 'UsersController');
 
     Route::post('login', 'AuthController@login')->name('login');
     Route::get('logout', 'AuthController@logout');
